@@ -1,6 +1,10 @@
 import java.awt.image.BufferedImage
-import javax.imageio.ImageIO
+import java.io.BufferedWriter
 import java.io.File
+import java.io.FileWriter
+import javax.imageio.ImageIO
+import java.io.*;
+
 
 const val NULL_BLOCK_CHAR = '\u001A'
 
@@ -11,10 +15,11 @@ fun getChunkFromColor(color: IntArray): String {
     return r.toChar().toString() + g.toChar() + b.toChar()
 }
 
+
 fun decodeSnakingQrGrid(imagePath: String): String {
     val img: BufferedImage = ImageIO.read(File(imagePath))
     val imgSize = img.width
-    val cellSize = 50
+    val cellSize = 2
     val gridSize = imgSize / cellSize
 
     // Generate snaking coordinates
@@ -61,5 +66,11 @@ fun decodeSnakingQrGrid(imagePath: String): String {
 fun main() {
     val imagePath = "null_block_qr_grid.png"
     val decodedUrl = decodeSnakingQrGrid(imagePath)
-    println("Decoded URL: $decodedUrl")
+    var geek_file = FileWriter("ABC.txt")
+    val geekwrite = BufferedWriter(geek_file)
+    geekwrite.write(decodedUrl)
+    geekwrite.close()
+    println("Written successfully")
+
+
 }

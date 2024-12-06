@@ -24,7 +24,7 @@ fun createSnakingQrGrid(url: String): BufferedImage {
     val urlLength = url.length
     val requiredCells = ceil(urlLength / 3.0).toInt() + 3 // Add 3 for reserved corner cells
     val gridSize = ceil(sqrt(requiredCells.toDouble())).toInt() // Ensure grid is large enough
-    val cellSize = 50
+    val cellSize = 2
     val imgSize = gridSize * cellSize
 
     val img = BufferedImage(imgSize, imgSize, BufferedImage.TYPE_INT_RGB)
@@ -81,4 +81,3 @@ fun main() {
     val gridImage = createSnakingQrGrid(url)
     ImageIO.write(gridImage, "png", File("null_block_qr_grid.png"))
 }
-
